@@ -29,6 +29,9 @@ from digitalio import DigitalInOut, Direction
 import adafruit_pn532.i2c
 import time
 
+from enviar_para_backend import enviar_para_backend
+
+
 # Configuração dos LEDs
 led_interno = DigitalInOut(board.LED)  # LED interno do Pico W
 led_interno.direction = Direction.OUTPUT
@@ -166,6 +169,7 @@ def inicializar_pn532():
 
 def ler_mifare_classic(uid):
     """Tenta ler dados de um cartão MiFare Classic"""
+    uid = list(uid) 
     try:
         # Chave padrão para MiFare Classic (geralmente funciona com cartões novos)
         key = [0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]
@@ -202,6 +206,7 @@ def ler_mifare_classic(uid):
         print(f"Erro ao ler dados MiFare: {e}")
 
 def main():
+
     """Função principal do programa"""
     print("=" * 60)
     print("=== LEITOR RFID PN532 COM INDICAÇÃO LED ===")
@@ -246,6 +251,8 @@ def main():
                 if len(uid) == 4:
                     tipo_cartao = "MiFare Classic 1K/4K"
                     print(f"   Tipo: {tipo_cartao}")
+                    enviar_para_backend(uid, tipo_cartao)
+
                     print(f"   Capacidade: Provavelmente 1KB ou 4KB")
                     print("\n📖 TENTANDO LER DADOS:")
                     ler_mifare_classic(uid)
