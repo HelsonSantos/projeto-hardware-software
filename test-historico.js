@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-const fetch = require("node-fetch");
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 const API_BASE_URL = "http://localhost:3001";
 
