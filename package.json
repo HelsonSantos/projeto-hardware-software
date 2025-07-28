@@ -1,0 +1,35 @@
+{
+  "name": "projeto-hardware-software",
+  "version": "1.0.0",
+  "description": "Sistema de Controle de Acesso RFID",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd back-end && npm run dev",
+    "dev:frontend": "cd front-end && npm run dev",
+    "install:all": "npm install && cd back-end && npm install && cd ../front-end && npm install",
+    "build": "cd front-end && npm run build",
+    "test:connection": "node test-connection.js",
+    "add-admin": "node add-admin.js",
+    "generate-password": "node generate-password.js",
+    "test-rfid-alert": "node test-rfid-alert.js",
+    "test-historico": "node test-historico.js",
+    "start:backend": "cd back-end && npm start",
+    "start:frontend": "cd front-end && npm run preview"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "rfid",
+    "access-control",
+    "nodejs",
+    "react",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "node-fetch": "^3.3.2"
+  }
+}
